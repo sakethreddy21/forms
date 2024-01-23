@@ -3,7 +3,7 @@ export const validateAddress = (values) => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
   if (!values.name) {
     errors.name = "Name is required!";
-  }else if (values.name.length < 4) {
+  }else if (values.name.length < 3) {
     errors.name = "Name must be more than 4 characters";
   }
 

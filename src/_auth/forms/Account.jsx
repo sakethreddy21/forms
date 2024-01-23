@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import React from 'react';
+import { toast } from 'react-toastify';
 import { validateAccount } from "../../lib/validation";
 import { useNavigate } from "react-router-dom";
 import { Account_inputsitems } from "../../Content";
@@ -27,17 +28,17 @@ function Address()  {
   const handleRegister = () => {
     setErrors(validateAccount(inputValues));
     setIsSubmitting(true);
-    if (Object.keys(errors).length === 0 ) {
-    addEmployeeData({ ...inputValues });
-  }
-   
   };
   //to  navigate to next page
   useEffect(() => {
     console.log(errors);  
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      navigate('/data')
-     
+      addEmployeeData({ ...inputValues });
+      toast.success('Data saved successfully');
+      navigate('/data') 
+    }
+    else if(Object.keys(errors).length !== 0 && isSubmitting){
+      toast.error('Please enter valid data');
     }
   },[errors]);
 

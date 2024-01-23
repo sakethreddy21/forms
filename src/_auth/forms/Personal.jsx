@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { Personal_inputsitems } from '../../Content';
 import { validatePersonal } from '../../lib/validation';
 import { Link, useNavigate } from 'react-router-dom';
@@ -20,18 +21,18 @@ const Personal = () => {
   const handleRegister = () => {
     setErrors(validatePersonal(inputValues));
     setIsSubmitting(true);
-     if (Object.keys(errors).length === 0) {
-     
-       addEmployeeData({...inputValues });
-    }
   };
   //to  navigate to next page
   useEffect(() => {
      
     if (Object.keys(errors).length === 0 && isSubmitting) {
+      addEmployeeData({...inputValues });
+      toast.success('Data saved successfully');
       navigate('/account')
-     
-    }
+  }
+  else if(Object.keys(errors).length !== 0 && isSubmitting){
+    toast.error('Please enter valid data');
+  }
   },[errors]);
 
  

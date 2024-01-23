@@ -1,5 +1,7 @@
 
 import { Routes, Route } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Authlayout from './_auth/Authlayout'
 import Personal from './_auth/forms/Personal';
 import Address from './_auth/forms/Address';
@@ -17,6 +19,7 @@ function App() {
         </Route>
         <Route path='/data' element={<Data/>} />
         </Routes>
+        <ToastContainer />
     </div>
   );
 }
