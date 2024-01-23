@@ -8,6 +8,8 @@ import { Account_inputsitems } from "../../Content";
 import { Link } from "react-router-dom";
 import { addEmployeeData} from '../../services/localstorage';
 function Address()  {
+
+
   const navigate = useNavigate();
   const [inputValues, setInputValues] = useState({});
   const [errors, setErrors] = useState({});
@@ -20,16 +22,18 @@ function Address()  {
     }));
 
   };
+
+  // register function to submit the data and validate the data
   const handleRegister = () => {
     setErrors(validateAccount(inputValues));
     setIsSubmitting(true);
     if (Object.keys(errors).length === 0 ) {
-      navigate('/data')
     console.log(inputValues);
     addEmployeeData({ ...inputValues });
   }
    
   };
+  //to  navigate to next page
   useEffect(() => {
     console.log(errors);  
     if (Object.keys(errors).length === 0 && isSubmitting) {

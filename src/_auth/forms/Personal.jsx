@@ -16,14 +16,16 @@ const Personal = () => {
     }));
 
   };
+  //register function to submit the data and validate the data
   const handleRegister = () => {
     setErrors(validatePersonal(inputValues));
     setIsSubmitting(true);
      if (Object.keys(errors).length === 0) {
-      navigate('/account')
+     
        addEmployeeData({...inputValues });
     }
   };
+  //to  navigate to next page
   useEffect(() => {
     console.log(errors);  
     if (Object.keys(errors).length === 0 && isSubmitting) {

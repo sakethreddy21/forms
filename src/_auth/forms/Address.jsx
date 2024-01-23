@@ -21,16 +21,19 @@ function Address()  {
     }));
 
   };
+  //register function to submit the data and validate the data
   const handleRegister = () => {
     setErrors(validateAddress(inputValues));
     setIsSubmitting(true);
     if (Object.keys(errors).length === 0) {
-        navigate('/personal')
+       
       console.log(inputValues);
       addEmployeeData({ ...inputValues });
     }
     
   };
+
+  //to  navigate to next page
   useEffect(() => {
     console.log(errors);  
     if (Object.keys(errors).length === 0 && isSubmitting) {
@@ -45,9 +48,10 @@ function Address()  {
 
          <div className=" ">
           <p className="font-bold text-3xl text-center mb-4">
-            Personal Info
+            Address data
           </p>
             <div >
+              {/* mapping the inputs  */}
               {Address_inputitems.map((item) => (
                 <div key={item.name} >
                   <div className=" mt-4 ">
