@@ -1,51 +1,63 @@
-"use client"
-
-import { useState, useEffect } from "react"
-import React from 'react';
-import { toast } from 'react-toastify';
+import { useState, useEffect } from "react";
+import React from "react";
+import { toast } from "react-toastify";
 import { validateAddress } from "../../lib/validation";
 import { useNavigate } from "react-router-dom";
 import { Address_inputitems } from "../../Content";
-import { addEmployeeData} from '../../services/localstorage';
-function Address()  {
- 
+import { addEmployeeData, getAllEmployeeData } from "../../services/localstorage";
+
+function Address() {
   const navigate = useNavigate();
   const [inputValues, setInputValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Function to reset form fields
+  const resetForm = () => {
+    setInputValues({});
+    setErrors({});
+    setIsSubmitting(false);
   
+  };
+
+  // Initialize form state with existing employee data
+  useEffect(() => {
+    const employees = getAllEmployeeData();
+    const initialInputValues = {};
+    Address_inputitems.forEach((item) => {
+      initialInputValues[item.name] =
+        (employees.find((employee) => employee[item.name]) || {})[item.name] || "";
+    });
+    setInputValues(initialInputValues);
+  }, []); 
+
   const handleInputChange = (e, name) => {
     const { value } = e.target;
     setInputValues((prevValues) => ({
       ...prevValues,
       [name]: value,
     }));
-
   };
-  //register function to submit the data and validate the data
+
   const handleRegister = () => {
     setErrors(validateAddress(inputValues));
     setIsSubmitting(true);
   };
 
-  //to  navigate to next page
-  useEffect(() => { 
+  useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
       addEmployeeData({ ...inputValues });
-      toast.success('Data saved successfully');
-      navigate('/personal')
-     
+      toast.success("Data saved successfully");
+      navigate("/personal");
+      resetForm(); // Reset the form after successful submission
+    } else if (Object.keys(errors).length !== 0 && isSubmitting) {
+      toast.error("Please enter valid data");
     }
-    else if(Object.keys(errors).length !== 0 && isSubmitting){
-      toast.error('Please enter valid data');
-    }
-  },[errors]);
+  }, [errors]);
 
- 
   return (
     <div className="flex gap-10 ">
-
-         <div className=" ">
+      <div className=" ">
           <p className="font-bold text-3xl text-center mb-4">
             Address data
           </p>
@@ -65,7 +77,7 @@ function Address()  {
                       placeholder={item.placeholder}
                      // Add onchange event listener
                      onChange={(e) => handleInputChange(e, item.name)}
-              value={inputValues[item.name] || ''}
+                     value={inputValues[item.name] || ''}
                       className="h-10 border-2 border-pink-500 rounded-lg pl-10 text-pink-500 placeholder-pink-500 focus:border-transparent  focus:outline-none w-96"
                     />
                     <br />
@@ -91,6 +103,6 @@ function Address()  {
         </div>
     </div>
   );
-};
+}
 
 export default Address;

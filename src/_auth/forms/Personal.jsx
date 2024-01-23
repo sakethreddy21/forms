@@ -3,12 +3,29 @@ import { toast } from 'react-toastify';
 import { Personal_inputsitems } from '../../Content';
 import { validatePersonal } from '../../lib/validation';
 import { Link, useNavigate } from 'react-router-dom';
-import { addEmployeeData} from '../../services/localstorage'
+import { addEmployeeData, getAllEmployeeData} from '../../services/localstorage'
 const Personal = () => {
   const navigate = useNavigate();
   const [inputValues, setInputValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const resetForm = () => {
+    setInputValues({});
+    setErrors({});
+    setIsSubmitting(false);
+  
+  };
+  useEffect(() => {
+  const employees = getAllEmployeeData();
+    const initialInputValues = {};
+    Personal_inputsitems.forEach((item) => {
+      initialInputValues[item.name] =
+        (employees.find((employee) => employee[item.name]) || {})[item.name] || "";
+    });
+    setInputValues(initialInputValues);
+  }, []); 
+
+  
   const handleInputChange = (e, name) => {
     const { value } = e.target;
     setInputValues((prevValues) => ({
@@ -29,6 +46,7 @@ const Personal = () => {
       addEmployeeData({...inputValues });
       toast.success('Data saved successfully');
       navigate('/account')
+      resetForm();
   }
   else if(Object.keys(errors).length !== 0 && isSubmitting){
     toast.error('Please enter valid data');
