@@ -34,8 +34,7 @@ function Address()  {
   };
 
   //to  navigate to next page
-  useEffect(() => {
-    console.log(errors);  
+  useEffect(() => { 
     if (Object.keys(errors).length === 0 && isSubmitting) {
       navigate('/personal')
      

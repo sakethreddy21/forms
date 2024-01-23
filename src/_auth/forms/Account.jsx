@@ -28,7 +28,6 @@ function Address()  {
     setErrors(validateAccount(inputValues));
     setIsSubmitting(true);
     if (Object.keys(errors).length === 0 ) {
-    console.log(inputValues);
     addEmployeeData({ ...inputValues });
   }
    

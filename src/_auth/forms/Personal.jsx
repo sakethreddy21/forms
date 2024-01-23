@@ -27,7 +27,7 @@ const Personal = () => {
   };
   //to  navigate to next page
   useEffect(() => {
-    console.log(errors);  
+     
     if (Object.keys(errors).length === 0 && isSubmitting) {
       navigate('/account')
      

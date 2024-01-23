@@ -62,9 +62,9 @@ export const validatePersonal = (values) => {
 export const validateAccount = (values) => {
   const errors = {};
 
-  if (!values.name) {
+  if (!values.username) {
     errors.name = "Name is required!";
-  }else if (values.name.length < 4) {
+  }else if (values.username.length < 4) {
     errors.name = "Name must be more than 4 characters";
   }
 
