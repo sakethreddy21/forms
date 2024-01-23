@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react"
 import React from 'react';
-import { validate } from "../../lib/validation";
+import { validateAddress } from "../../lib/validation";
 import { useNavigate } from "react-router-dom";
-import { inputitems } from "../../Content";
+import { Address_inputitems } from "../../Content";
 import { addEmployeeData} from '../../services/localstorage';
 function Address()  {
  
@@ -22,9 +22,9 @@ function Address()  {
 
   };
   const handleRegister = () => {
-    setErrors(validate(inputValues));
+    setErrors(validateAddress(inputValues));
     setIsSubmitting(true);
-    if (Object.keys(errors).length === 0 && isSubmitting) {
+    if (Object.keys(errors).length === 0) {
         navigate('/personal')
       console.log(inputValues);
       addEmployeeData({ ...inputValues });
@@ -48,7 +48,7 @@ function Address()  {
             Personal Info
           </p>
             <div >
-              {inputitems.map((item) => (
+              {Address_inputitems.map((item) => (
                 <div key={item.name} >
                   <div className=" mt-4 ">
                     <span className=" absolute -translate-y-1/2 bg-white text-md text-pink-500 ml-6 ">

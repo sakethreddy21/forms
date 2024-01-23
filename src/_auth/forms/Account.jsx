@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react"
 import React from 'react';
-import { validate3 } from "../../lib/validation";
-import { useNavigate , useLocation} from "react-router-dom";
-import { inputitems3 } from "../../Content";
+import { validateAccount } from "../../lib/validation";
+import { useNavigate } from "react-router-dom";
+import { Account_inputsitems } from "../../Content";
 import { Link } from "react-router-dom";
 import { addEmployeeData} from '../../services/localstorage';
 function Address()  {
@@ -21,7 +21,7 @@ function Address()  {
 
   };
   const handleRegister = () => {
-    setErrors(validate3(inputValues));
+    setErrors(validateAccount(inputValues));
     setIsSubmitting(true);
     if (Object.keys(errors).length === 0 ) {
       navigate('/data')
@@ -48,7 +48,7 @@ function Address()  {
           </p>
             <div className="w-60">
               <form>
-              {inputitems3.map((item) => (
+              {Account_inputsitems.map((item) => (
                 <div key={item.name} className="w-60">
                   <div className=" mt-4">
                     <span className=" absolute -translate-y-1/2 bg-white text-md text-pink-500 ml-6 ">

@@ -1,4 +1,4 @@
-export const validate = (values) => {
+export const validateAddress = (values) => {
   const errors = {};
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
   if (!values.name) {
@@ -31,7 +31,7 @@ export const validate = (values) => {
 };
 
 
-export const validate2 = (values) => {
+export const validatePersonal = (values) => {
   const errors = {};
 
   if (!values.Address) {
@@ -59,7 +59,7 @@ export const validate2 = (values) => {
   return errors;
 };
 
-export const validate3 = (values) => {
+export const validateAccount = (values) => {
   const errors = {};
 
   if (!values.name) {

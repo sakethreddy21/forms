@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { inputitems2 } from '../../Content';
-import { validate2 } from '../../lib/validation';
-import { useLocation } from "react-router-dom";
+import { Personal_inputsitems } from '../../Content';
+import { validatePersonal } from '../../lib/validation';
 import { Link, useNavigate } from 'react-router-dom';
 import { addEmployeeData} from '../../services/localstorage'
 const Personal = () => {
@@ -18,9 +17,9 @@ const Personal = () => {
 
   };
   const handleRegister = () => {
-    setErrors(validate2(inputValues));
+    setErrors(validatePersonal(inputValues));
     setIsSubmitting(true);
-     if (Object.keys(errors).length === 0 && isSubmitting) {
+     if (Object.keys(errors).length === 0) {
       navigate('/account')
        addEmployeeData({...inputValues });
     }
@@ -41,7 +40,7 @@ const Personal = () => {
             Personal Info
           </p>
           <div className='flex flex-col '>
-      {inputitems2.map((item) => (
+      {Personal_inputsitems.map((item) => (
         <div key={item.name} className="w-60">
           <div className="mt-4 relative">
             <span className="absolute -translate-y-1/2 bg-white text-md text-pink-500 ml-6">

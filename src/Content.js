@@ -1,7 +1,7 @@
 import { AiOutlineMail, AiFillLock } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
  
- export const inputitems = [
+ export const Address_inputitems = [
   {
     id: '1',
     name: 'name',
@@ -27,7 +27,7 @@ import { BsFillPersonFill } from 'react-icons/bs';
   },
 ];
 
-export const inputitems2 = [
+export const Personal_inputsitems = [
   {
     id: '1',
     name: 'Address',
@@ -99,7 +99,7 @@ export const inputitems2 = [
 ]
 
 
-export const inputitems3= [
+export const Account_inputsitems= [
   {
     id: '1',
     name: 'username',
