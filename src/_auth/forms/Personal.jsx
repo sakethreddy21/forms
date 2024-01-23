@@ -25,6 +25,14 @@ const Personal = () => {
        addEmployeeData({...inputValues });
     }
   };
+  useEffect(() => {
+    console.log(errors);  
+    if (Object.keys(errors).length === 0 && isSubmitting) {
+      navigate('/account')
+     
+    }
+  },[errors]);
+
  
 
   return (
@@ -76,7 +84,7 @@ const Personal = () => {
     </div>
       <div className="mt-2 flex flex-grow-1 justify-center items-center  ">
               <button className=" bg-pink-500 text-white font-bold text-xl rounded-lg px-8 py-1 mr">
-              <Link to='/Address'>Back</Link>
+              <Link to='/'>Back</Link>
               </button>
               <button onClick={handleRegister}  className=" bg-pink-500 text-white font-bold text-xl rounded-lg px-8 py-1 ml-3">
               NEXT

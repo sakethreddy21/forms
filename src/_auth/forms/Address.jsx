@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import React from 'react';
-import uuid from 'react-uuid';
 import { validate } from "../../lib/validation";
 import { useNavigate } from "react-router-dom";
 import { inputitems } from "../../Content";
@@ -32,6 +31,13 @@ function Address()  {
     }
     
   };
+  useEffect(() => {
+    console.log(errors);  
+    if (Object.keys(errors).length === 0 && isSubmitting) {
+      navigate('/personal')
+     
+    }
+  },[errors]);
 
  
   return (

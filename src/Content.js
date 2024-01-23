@@ -41,7 +41,7 @@ export const inputitems2 = [
     name: 'city',
     icon: <AiOutlineMail size={30} color="pink" />,
     type: 'text',
-    placeholder: 'Enter Your email',
+    placeholder: 'Enter Your city',
   },
   
   {
@@ -94,7 +94,7 @@ export const inputitems2 = [
     name: 'zipcode',  
     icon: <AiFillLock size={30} color="pink" />,
     type: 'number',
-    placeholder: 'Enter Your date of birth',
+    placeholder: 'Enter Your ZIP code',
   },
 ]
 
@@ -102,11 +102,10 @@ export const inputitems2 = [
 export const inputitems3= [
   {
     id: '1',
-    name: 'name',
-   
+    name: 'username',
     icon: <BsFillPersonFill size={30} color="pink" />,
     type: 'name',
-    placeholder: 'Enter Your name',
+    placeholder: 'Enter Your username',
   },
   {
     id: '2',

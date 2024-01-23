@@ -12,7 +12,7 @@ function App() {
       <Routes>
       <Route element={<Authlayout/>}>
         <Route path='/personal' element={<Personal/>} />
-        <Route path='/address' element={<Address/>} />
+        <Route path='/' element={<Address/>} />
         <Route path='/account' element={<Account/>} />
         </Route>
         <Route path='/data' element={<Data/>} />

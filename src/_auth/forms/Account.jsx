@@ -23,13 +23,20 @@ function Address()  {
   const handleRegister = () => {
     setErrors(validate3(inputValues));
     setIsSubmitting(true);
-    if (Object.keys(errors).length === 0 && isSubmitting) {
+    if (Object.keys(errors).length === 0 ) {
       navigate('/data')
     console.log(inputValues);
     addEmployeeData({ ...inputValues });
   }
    
   };
+  useEffect(() => {
+    console.log(errors);  
+    if (Object.keys(errors).length === 0 && isSubmitting) {
+      navigate('/data')
+     
+    }
+  },[errors]);
 
  
   return (
@@ -40,6 +47,7 @@ function Address()  {
             Create Account
           </p>
             <div className="w-60">
+              <form>
               {inputitems3.map((item) => (
                 <div key={item.name} className="w-60">
                   <div className=" mt-4">
@@ -65,6 +73,7 @@ function Address()  {
                   </div>
                 </div>
               ))}
+              </form>
             </div>
             
             <div className="mt-2 flex flex-grow-1 justify-center items-center  ">
