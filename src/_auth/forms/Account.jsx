@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react"
 import React from 'react';
 import { validate3 } from "../../lib/validation";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useLocation} from "react-router-dom";
 import { inputitems3 } from "../../Content";
+import { Link } from "react-router-dom";
+import { addEmployeeData} from '../../services/localstorage';
 function Address()  {
-
   const navigate = useNavigate();
   const [inputValues, setInputValues] = useState({});
   const [errors, setErrors] = useState({});
@@ -22,14 +23,14 @@ function Address()  {
   const handleRegister = () => {
     setErrors(validate3(inputValues));
     setIsSubmitting(true);
-  };
-  useEffect(() => {
-    console.log(errors);  
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      navigate('/personal')
-      console.log(inputValues);
-    }
-  },[errors]);
+      navigate('/data')
+    console.log(inputValues);
+    addEmployeeData({ ...inputValues });
+  }
+   
+  };
+
  
   return (
     <div className="flex gap-10">
@@ -45,8 +46,6 @@ function Address()  {
                     <span className=" absolute -translate-y-1/2 bg-white text-md text-pink-500 ml-6 ">
                       {item.name}
                     </span>
-                    
-
                     <span className=" p-1 absolute beg-0 grid w-10 ">
                       {item.icon}{' '}
                     </span>
@@ -61,17 +60,21 @@ function Address()  {
                     {errors[item.name] && (
                       <span className="text-red-500 text-sm">
                         {errors[item.name]}
-                      </span>
+                    </span>
                     )}
                   </div>
                 </div>
               ))}
             </div>
             
-            <div className="mt-2">
-              <button onClick={handleRegister}  className="bg-pink-500 text-white font-bold text-xl rounded-lg px-40 py-1">
+            <div className="mt-2 flex flex-grow-1 justify-center items-center  ">
+              <button className=" bg-pink-500 text-white font-bold text-xl rounded-lg px-8 py-1 mr">
+              <Link to='/personal'>Back</Link>
+              </button>
+              <button onClick={handleRegister}  className=" bg-pink-500 text-white font-bold text-xl rounded-lg px-8 py-1 ml-3">
               NEXT
               </button>
+
             </div>
            
            

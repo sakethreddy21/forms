@@ -111,7 +111,6 @@ export const inputitems3= [
   {
     id: '2',
     name: 'password',
-    
     icon: <AiFillLock size={30} color="pink" />,
     type: 'password',
     placeholder: 'Enter Your password',

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { inputitems2 } from '../../Content';
 import { validate2 } from '../../lib/validation';
+import { useLocation } from "react-router-dom";
 import { Link, useNavigate } from 'react-router-dom';
+import { addEmployeeData} from '../../services/localstorage'
 const Personal = () => {
   const navigate = useNavigate();
   const [inputValues, setInputValues] = useState({});
@@ -18,15 +20,11 @@ const Personal = () => {
   const handleRegister = () => {
     setErrors(validate2(inputValues));
     setIsSubmitting(true);
-  };
-  useEffect(() => {
-    console.log(errors);  
-    if (Object.keys(errors).length === 0 && isSubmitting) {
+     if (Object.keys(errors).length === 0 && isSubmitting) {
       navigate('/account')
-      console.log(inputValues);
+       addEmployeeData({...inputValues });
     }
-  },[errors]);
-
+  };
  
 
   return (
